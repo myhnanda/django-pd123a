@@ -17,6 +17,7 @@ def contato(request):
     else:
         formulario = ContatoForm(request.POST)
         if formulario.is_valid():
+            formulario.save
             sucesso = True
 
     #Definir o contexto da view contato
@@ -45,6 +46,7 @@ def reserva(request):
     else: 
         formulario = ReservaForm(request.POST)
         if formulario.is_valid():
+            formulario.save()
             sucesso = True
     
     #contexto da view de reserva
