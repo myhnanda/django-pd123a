@@ -12,6 +12,18 @@ class Contato(models.Model):
     email = models.EmailField()
     mensagem = models.CharField(max_length= 3000)
     data = models.DateField(auto_now_add=True)
+    lido = models.BooleanField(verbose_name= 'Mensagem lida', default=False)
+
+#STRING PADRÃO PARA ADMIN
+    def __str__(self) -> str:
+        return f'{self.nome} - {self.email}'
+    
+    class Meta: 
+        verbose_name = 'Formulário de Contato'
+        verbose_name_plural = 'Formulários de Contato'
+        ordering = ['-data', 'lido']
+        
+    
 
 class Reserva(models.Model):
     nome_pet = models.CharField(max_length= 50)

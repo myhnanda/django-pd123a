@@ -1,0 +1,24 @@
+{% extends 'inicio.html' %}
+{% load bootstrap5 %}
+
+
+{% block main%}
+<h1> Cadastro de Usuário </h1> 
+
+    {% if sucesso %}
+        <p class="alert alert-success"> O usuário foi cadastrado com sucesso! </p>
+    {% else %}
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {% bootstrap_form formulario %}
+
+            <button type="submit" class="btn btn-primary"> Cadastrar </button>
+        </form>
+    {% endif %}
+
+
+
+{% endblock main%}
+
+

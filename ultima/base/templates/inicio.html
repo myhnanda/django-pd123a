@@ -38,8 +38,31 @@
                 {% block main %}
                 <h1>Reserve o banho do seu pet!</h1>
 
-                <a href="{% url 'contato' %}">Fale Conosco</a>
-                <a href="{% url 'reserva' %}">Reserve o Banho do seu Pet</a>
+                <ul>
+                    <li>
+                        <a href="{% url 'contato' %}">Fale Conosco</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'reserva' %}">Reserve o Banho do seu Pet</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'cadastro_usuario' %}">Cadastro</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout_usuario' %}" style = "color: red;">Logout</a>
+                    </li>
+                    {%else%}
+                    <li>
+                        <a href="{% url 'login_usuario' %}"> Login</a>
+                    </li>
+                    {% endif%}
+
+                </ul>
+
                 {% endblock main %}
             </main>
 

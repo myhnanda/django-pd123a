@@ -1,0 +1,13 @@
+{% extends 'inicio.html' %}
+{% load bootstrap5 %}
+
+{% block main%}
+    <h1> Login </h1>
+    <form method='post'>
+        {%csrf_token%}
+        {% bootstrap_form formulario%}
+        <button type='submit' class = 'btn btn-primary'> Logar </button>
+    </form>
+
+
+{% endblock main%}
