@@ -17,7 +17,7 @@ def criar_reserva(request):
     #MÉTODO POST
 
     else:
-        formulário = ReservaForm(request.POST)
+        formulario = ReservaForm(request.POST)
         if formulario.is_valid():
             formulario.save()
             sucesso = True
