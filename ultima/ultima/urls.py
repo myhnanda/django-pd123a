@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from base.views import *
 
+
 urlpatterns = [
     path('', inicio, name= 'inicio'),
     path('contato/', contato, name = 'contato'),

@@ -1,6 +1,9 @@
 from django import forms
 from base.models import Contato, Reserva
 
+
+# nomme e mensagem é CharField - que corresponde a um campo de texto simples no formulário e se tornará um input text
+#email é EmailField
 # Formulario contato
 class ContatoForm(forms.ModelForm):
     #meta dados do formulario

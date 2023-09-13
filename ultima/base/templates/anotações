@@ -1,0 +1,15 @@
+django models permite que uma classe Python vire uma tabela e que manipulações sejam realizadas nos dados sem usar sql diretamente,
+também permite que se façam um versionamento do banco de dados através de migrações, que são utilizadas na estrutur de um banco de dados 
+Na pagina Models criamos uma classe contato que herda de uma outra classe models.Model e logo em seguida cria-se uma migração, que é gerado automaticamente
+makemigrations - comando do djanfo que verifica se o banco de dado está compatível com nossos models.Model
+
+
+No código acima, adicionamos o método __str__ dentro da classe Contato e, com isso, nosso modelo agora sabe como deve ser representado quando 
+convertido em string. O que fizemos foi criar uma formatação de string, indicando que primeiro vem o nome indicado no registro do contato 
+e depois colchetes, abrindo e fechando com o email no meio
+
+Módulo 5 Semana-04 ---------------------------
+
+Criação de nova app 
+criar nova páginas 
+e fazer novas validações adicionais no ModelForm
