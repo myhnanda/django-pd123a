@@ -21,7 +21,7 @@ class Reserva(models.Model):
 
     #informações do pet
     nome_pet = models.CharField(max_length=50)
-    porte =models.IntegerField(choices = PORTE_OPCOES, max_length = 120)
+    porte =models.IntegerField(choices = PORTE_OPCOES)
     #informações da reserva
     data_reserva = models.DateField(help_text='Ultilize o formato dd/mm/aaaa')
     turno = models.CharField(choices = TURNOS_OPCOES, max_length=120)

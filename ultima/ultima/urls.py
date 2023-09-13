@@ -28,7 +28,11 @@ urlpatterns = [
     path('cadastro/', cadastro_usuario, name ='cadastro_usuario'),
 
     path('reserva/', include('reserva.urls')),
-   
+    
+    #adicionar o recurso de Browsable API aamin para drf
 
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('rest_api.urls', namespace='api')),
+    # podemos acessar o recurso
 ]

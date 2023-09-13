@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'base',
     'bootstrap5',
     'reserva',
+    'rest_framework',
+    'rest_api',
 ]
 
 MIDDLEWARE = [
