@@ -1,5 +1,21 @@
 from django.db import models
 
+
+
+class PetShop(models.Model):
+    nome = models.CharField('Nome',max_length=50)
+    email = models.EmailField('E-mail', blank= True)
+    telefone = models.CharField('Telefone', max_length=20)
+   
+    def __str__(self):
+        return super().__str__()
+    
+    class Meta:
+        verbose_name = 'Petshop'
+        verbose_name_plural = 'Petshops'
+        ordering = ['nome']
+
+
 # Create your models here.
 #Classe de reserva de horário de banho do pet
 class Reserva(models.Model):
@@ -28,8 +44,8 @@ class Reserva(models.Model):
 
     #   Observações 
     observacoes = models.TextField(verbose_name= 'Observações', max_length=3000, blank=True)
-
-
+    petshop = models.ForeignKey(PetShop, models.SET_NULL, null=True, related_name='reservas')
+ 
     def __str__(self):
         return f'{self.nome}: {self.data_reserva} ({self.turno})'
 
