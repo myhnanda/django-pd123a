@@ -37,11 +37,10 @@ class Reserva(models.Model):
 
     #informações do pet
     nome_pet = models.CharField(max_length=50)
-    porte =models.IntegerField(choices = PORTE_OPCOES)
+    porte =models.IntegerField(choices = PORTE_OPCOES, null=True, blank=True)
     #informações da reserva
-    data_reserva = models.DateField(help_text='Ultilize o formato dd/mm/aaaa')
-    turno = models.CharField(choices = TURNOS_OPCOES, max_length=120)
-
+    data_reserva = models.DateField(help_text='Ultilize o formato dd/mm/aaaa', null=True, blank = True)
+    turno = models.CharField(choices = TURNOS_OPCOES, max_length=120, blank = True)
     #   Observações 
     observacoes = models.TextField(verbose_name= 'Observações', max_length=3000, blank=True)
     petshop = models.ForeignKey(PetShop, models.SET_NULL, null=True, related_name='reservas')

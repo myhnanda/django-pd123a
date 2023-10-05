@@ -60,16 +60,16 @@ class PetshopNestedSerializer(ModelSerializer):
 
 class AgendamentoModelSerializer(ModelSerializer):
 
-    #dados_petshop = SerializerMethodField() # não esta no banco de dados
-    petshop = PetShopRelatedFieldCustomSerializer(
-        queryset = PetShop.objects.all(),
-        read_only = False)
+    dados_petshop = SerializerMethodField() # não esta no banco de dados
+    #petshop = PetShopRelatedFieldCustomSerializer(
+        # queryset = PetShop.objects.all(),
+        # read_only = False)
  
-    # def get_dados_petshop(self, obj):
+    def get_dados_petshop(self, obj):
 
-    #     if obj.petshop is not None:
-    #         serializer = PetshopNestedSerializer(instance=obj.petshop)
-    #         return serializer.data
+        if obj.petshop is not None:
+            serializer = PetshopNestedSerializer(instance=obj.petshop)
+            return serializer.data
         
     class Meta:
         model = Reserva
