@@ -18,6 +18,11 @@ class AgendamentoModelViewSet(ModelViewSet):
       serializer_class = AgendamentoModelSerializer
       permission_classes = [IsAuthenticatedOrReadOnly]
       
+class PetshopModelViewSet(ModelViewSet):
+     queryset = PetShop.objects.all()
+     serializer_class = PetshopSerializer
+     permission_classes = [IsAuthenticatedOrReadOnly]
+      
 
 #essa função sera acessada atrasves dos métodos get e post
 @api_view(['GET', 'POST'])
