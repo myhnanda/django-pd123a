@@ -13,24 +13,24 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly #permissão apenas para leitura
 
 
-# class AvaliacaoViewSet(ModelViewSet):
-#     queryset = Avaliacao.objects.all()
-#     serializer_class = AvaliacaoSerializer
 
 class AgendamentoModelViewSet(ModelViewSet):
       queryset = Reserva.objects.all()
-      serializer_class = AgendamentoModelSerializer
+      serializer_class = AgendamentoModelSerializer      
       permission_classes = [IsAuthenticatedOrReadOnly]
+      authentication_classes = [TokenAuthentication]
       
 class PetshopModelViewSet(ModelViewSet):
      queryset = PetShop.objects.all()
      serializer_class = PetshopSerializer
      permission_classes = [IsAuthenticatedOrReadOnly]
-      
+     authentication_classes = [TokenAuthentication]
+
 class AvaliacaoViewSet(ModelViewSet):
     queryset = Avaliacao.objects.all()
     serializer_class = AvaliacaoSerializer
     permission_classes =[IsAuthenticatedOrReadOnly]
+    authentication_classes = [TokenAuthentication]
 
 
 
