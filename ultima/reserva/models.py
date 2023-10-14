@@ -1,7 +1,12 @@
 from django.db import models
 
 
+class CategoriaAnimal(models.Model):
+    nome = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.nome
+    
 class PetShop(models.Model):
     nome = models.CharField('Nome',max_length=50)
     email = models.EmailField('E-mail', blank= True)
@@ -44,7 +49,8 @@ class Reserva(models.Model):
     #   Observações 
     observacoes = models.TextField(verbose_name= 'Observações', max_length=3000, blank=True)
     petshop = models.ForeignKey(PetShop, models.SET_NULL, null=True, related_name='reservas')
- 
+    categoria = models.ForeignKey(CategoriaAnimal, on_delete=models.CASCADE, related_name='reservas')
+    
     def __str__(self):
         return f'{self.nome}: {self.data_reserva} ({self.turno})'
 
@@ -60,3 +66,7 @@ class Avaliacao(models.Model):
 
     def __str__(self):
         return super().__str__()
+    
+from django.db import models
+
+
