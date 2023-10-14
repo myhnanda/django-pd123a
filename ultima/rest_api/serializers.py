@@ -5,7 +5,7 @@ from rest_framework.serializers import (
     PrimaryKeyRelatedField,
     ValidationError
 )
-from reserva.models import Reserva, PetShop
+from reserva.models import Reserva, PetShop, Avaliacao
 
 
 class AgendamentoPetshopSerializer(ModelSerializer):
@@ -75,4 +75,7 @@ class AgendamentoModelSerializer(ModelSerializer):
         model = Reserva
         fields = '__all__'
         
-
+class AvaliacaoSerializer(ModelSerializer):
+    class Meta:
+        model = Avaliacao
+        fields = '__all__'

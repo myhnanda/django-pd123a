@@ -52,4 +52,11 @@ class Reserva(models.Model):
         verbose_name = 'Reserva de Banho'
         verbose_name_plural = 'Reservas de banho'
 
-    
+
+class Avaliacao(models.Model):
+    petshop = models.ForeignKey(PetShop, on_delete=models.CASCADE)
+    nota = models.IntegerField()
+    comentario = models.TextField()
+
+    def __str__(self):
+        return super().__str__()
