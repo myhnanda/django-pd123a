@@ -17,7 +17,6 @@ def test_reserva_view_deve_retornar_template(client):
     assert resposta.status_code == 200
     assertTemplateUsed(resposta, 'criar_reserva.html')
 
-
 @pytest.mark.django_db
 def test_criar_reserva_deve_funcionar(client):
     petshop = baker.make(PetShop)

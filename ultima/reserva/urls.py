@@ -6,6 +6,6 @@ from reserva.views import *
 
 
 urlpatterns = [
-    path('', criar_reserva, name = 'criar_reserva'),
+    path('criar/', criar_reserva, name = 'criar_reserva'),
     
 ]

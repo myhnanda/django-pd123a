@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'reserva',
     'rest_framework',
     'rest_api',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [

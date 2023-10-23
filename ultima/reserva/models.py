@@ -49,7 +49,7 @@ class Reserva(models.Model):
     #   Observações 
     observacoes = models.TextField(verbose_name= 'Observações', max_length=3000, blank=True)
     petshop = models.ForeignKey(PetShop, models.SET_NULL, null=True, related_name='reservas')
-    categoria = models.ForeignKey(CategoriaAnimal, on_delete=models.CASCADE, related_name='reservas')
+    categoria = models.ForeignKey(CategoriaAnimal, models.SET_NULL, null=True, related_name='reservas')
     
     def __str__(self):
         return f'{self.nome}: {self.data_reserva} ({self.turno})'
@@ -67,6 +67,6 @@ class Avaliacao(models.Model):
     def __str__(self):
         return super().__str__()
     
-from django.db import models
+#from django.db import models  <-- você não pode importar biblioteca no final do código, sempre no inicio
 
 

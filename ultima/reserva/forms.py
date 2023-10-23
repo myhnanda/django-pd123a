@@ -1,5 +1,4 @@
 from django import forms
-
 from datetime import date 
 #ou from .models 
 from reserva.models import Reserva
@@ -13,7 +12,7 @@ class ReservaForm(forms.ModelForm):
         hoje = date.today()
 
         # se a data de reserva for anterior a hoje, gera um erro
-        if data_reserva < hoje:
+        if data_reserva is not None and data_reserva < hoje:
             raise forms.ValidationError('Não é possível reservar o banho para a data no passado. Tente outra data')        
         
 
