@@ -2,10 +2,15 @@ from django.db import models
 
 
 class CategoriaAnimal(models.Model):
-    nome = models.CharField(max_length=100)
+    CATEGORIA_CHOICES = (
+        ('C', 'Cachorro'),
+        ('G', 'Gato')
+    )
+    nome = models.CharField(max_length=1, choices=CATEGORIA_CHOICES, null=True, blank=True)
 
     def __str__(self):
-        return self.nome
+        return self.get_nome_display()
+
     
 class PetShop(models.Model):
     nome = models.CharField('Nome',max_length=50)
