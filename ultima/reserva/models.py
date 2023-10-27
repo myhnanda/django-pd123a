@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class CategoriaAnimal(models.Model):
@@ -16,9 +17,14 @@ class PetShop(models.Model):
     nome = models.CharField('Nome',max_length=50)
     email = models.EmailField('E-mail', blank= True)
     telefone = models.CharField('Telefone', max_length=20)
-   
+
     def __str__(self):
         return super().__str__()
+
+
+ 
+    def __str__(self):
+        return f'{self.nome}: {self.email} - {self.telefone}'
     
     class Meta:
         verbose_name = 'Petshop'
@@ -63,15 +69,18 @@ class Reserva(models.Model):
         verbose_name = 'Reserva de Banho'
         verbose_name_plural = 'Reservas de banho'
 
-
 class Avaliacao(models.Model):
     petshop = models.ForeignKey(PetShop, on_delete=models.CASCADE)
-    nota = models.IntegerField()
+    nota = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueValidator(0, "A nota deve ser no mínimo 0."),
+            MaxValueValidator(10, "A nota deve ser no máximo 10.")
+        ]
+    )
     comentario = models.TextField()
 
     def __str__(self):
-        return super().__str__()
-    
-#from django.db import models  <-- você não pode importar biblioteca no final do código, sempre no inicio
+        return f'Avaliação de {self.nota} para {self.petshop}'
+
 
 
