@@ -20,3 +20,6 @@ class Command(BaseCommand):
             self.style.SUCCESS('tudo pronto!')
         )
 
+"""Para rodar vou no terminal e escrevo
+python manage.py populate_reserva e vai cirar   
+"""

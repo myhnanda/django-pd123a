@@ -18,19 +18,17 @@ class PetShop(models.Model):
     email = models.EmailField('E-mail', blank= True)
     telefone = models.CharField('Telefone', max_length=20)
 
-    def __str__(self):
-        return super().__str__()
 
-
- 
     def __str__(self):
         return f'{self.nome}: {self.email} - {self.telefone}'
+    
+    def qtd_reserva(self):
+        return self.reservas.count()
     
     class Meta:
         verbose_name = 'Petshop'
         verbose_name_plural = 'Petshops'
         ordering = ['nome']
-
 
 # Create your models here.
 #Classe de reserva de horário de banho do pet
@@ -68,6 +66,7 @@ class Reserva(models.Model):
     class Meta:
         verbose_name = 'Reserva de Banho'
         verbose_name_plural = 'Reservas de banho'
+        ordering = ['nome', 'email','nome_pet', 'porte', 'data_reserva','turno', 'observacoes', 'petshop', 'categoria']
 
 class Avaliacao(models.Model):
     petshop = models.ForeignKey(PetShop, on_delete=models.CASCADE)

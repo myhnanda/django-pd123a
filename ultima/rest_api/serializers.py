@@ -6,6 +6,7 @@ from rest_framework.serializers import (
     ValidationError
 )
 from reserva.models import Reserva, PetShop, Avaliacao, CategoriaAnimal
+import datetime
 
 class CategoriaAnimalSerializer(ModelSerializer):
     class Meta:
@@ -16,36 +17,26 @@ class AgendamentoPetshopSerializer(ModelSerializer):
     categoria = CategoriaAnimalSerializer()
     class Meta:
         model = Reserva
-        fields = ['id',
-                  'nome',
-                  'email',
-                  'nome_pet',
-                  'data_reserva',
-                  'turno',
-                  'porte',
-                  'observacoes'
-        ]
+        fields = '__all__'
 
 
 class PetshopSerializer(ModelSerializer):
     
-    reservas = AgendamentoPetshopSerializer(many=True)
-
-    class Meta:
-        model = PetShop
-        fields = [
-            'id',
-            'nome',
-            'email',
-            'telefone',
-            'reservas',
-        ]
+        reservas = HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='api:reserva-detail'
+    )
+        
+        class Meta:
+            model = PetShop
+            fields = '__all__'
         
 class PetShopRelatedFieldCustomSerializer(PrimaryKeyRelatedField): #é uma chave primaria de um relacionamento. 
     #quando eu quiser que na leitura ver os dados do pet mas na escrita não
-    def _init_(self, **kwargs):
+    def __init__(self, **kwargs):
         self.serializer = PetshopNestedSerializer
-        super()._init_(**kwargs)
+        super().__init__(**kwargs)
     
     def use_pk_only_optimization(self):
         return False
@@ -62,20 +53,14 @@ class PetshopNestedSerializer(ModelSerializer):
 
 
 
-
 class AgendamentoModelSerializer(ModelSerializer):
 
-    dados_petshop = SerializerMethodField() # não esta no banco de dados
-    #petshop = PetShopRelatedFieldCustomSerializer(
-        # queryset = PetShop.objects.all(),
-        # read_only = False)
- 
-    def get_dados_petshop(self, obj):
-
-        if obj.petshop is not None:
-            serializer = PetshopNestedSerializer(instance=obj.petshop)
-            return serializer.data
-        
+    def validate_data(self, value):
+        hoje = datetime.date.today()
+        if value < hoje:
+            raise ValidationError('Não é possivel realizar um agendamento para o passado')
+        return value
+    
     class Meta:
         model = Reserva
         fields = '__all__'

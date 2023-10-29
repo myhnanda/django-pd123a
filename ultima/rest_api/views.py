@@ -19,7 +19,10 @@ class AgendamentoModelViewSet(ModelViewSet):
       serializer_class = AgendamentoModelSerializer      
       permission_classes = [IsAuthenticatedOrReadOnly]
       authentication_classes = [TokenAuthentication]
-      
+      def perform_destroy(self, instance):
+        # Esta função é chamada para executar a remoção de um objeto
+        instance.delete()
+        
 class PetshopModelViewSet(ModelViewSet):
      queryset = PetShop.objects.all()
      serializer_class = PetshopSerializer
@@ -30,7 +33,7 @@ class AvaliacaoViewSet(ModelViewSet):
     queryset = Avaliacao.objects.all()
     serializer_class = AvaliacaoSerializer
     permission_classes =[IsAuthenticatedOrReadOnly]
-    authentication_classes = [TokenAuthentication]
+    # authentication_classes = [TokenAuthentication]
 
 
 class CategoriaAnimalViewSet(ModelViewSet):

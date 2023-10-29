@@ -7,7 +7,7 @@ from rest_framework.routers import SimpleRouter
 app_name = 'rest_api'
 
 router = SimpleRouter(trailing_slash=False)
-router.register('agendamento', AgendamentoModelViewSet)
+router.register('agendamento', AgendamentoModelViewSet,basename= 'agendamento')
 router.register('petshop', PetshopModelViewSet)
 router.register('avaliacoes', AvaliacaoViewSet)
 router.register('categoria-animais', CategoriaAnimalViewSet)
